@@ -1,0 +1,42 @@
+#
+# Cross Platform Makefile
+# Compatible with MSYS2/MINGW, Ubuntu 14.04.1 and Mac OS X
+#
+# You will need SDL2 (http://www.libsdl.org):
+# Linux:
+#   apt-get install libsdl2-dev
+# Mac OS X:
+#   brew install sdl2
+# MSYS2:
+#   pacman -S mingw-w64-i686-SDL2
+#
+
+#CXX = g++
+#CXX = clang++
+
+EXE = main
+SOURCES = main.c pocketpy.c
+OBJS = $(addsuffix .o, $(basename $(notdir $(SOURCES))))
+UNAME_S := $(shell uname -s)
+
+CFLAGS = -std=c11
+CFLAGS += -g -Wall -Wformat
+CXXFLAGS = -std=c++11
+CXXFLAGS += -g -Wall -Wformat
+LIBS = 
+
+##---------------------------------------------------------------------
+## BUILD FLAGS PER PLATFORM
+##---------------------------------------------------------------------
+
+%.o:%.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+all: $(EXE)
+	@echo Build complete for $(ECHO_MESSAGE)
+
+$(EXE): $(OBJS)
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+
+clean:
+	rm -f $(EXE) $(OBJS)
