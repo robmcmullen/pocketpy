@@ -29,6 +29,12 @@ void pk__add_module_lz4();
 void pk__add_module_pkpy();
 void pk__add_module_picoterm();
 
+#ifdef PK_BUILD_MODULE_STRUCT
+void pk__add_module_struct();
+#else
+#define pk__add_module_struct()
+#endif
+
 #ifdef PK_BUILD_MODULE_CUTE_PNG
 void pk__add_module_cute_png();
 #else

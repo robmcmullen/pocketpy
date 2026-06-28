@@ -110,6 +110,11 @@ else()
 endif()
 
 
+if(PK_BUILD_MODULE_STRUCT)
+    add_subdirectory(3rd/struct)
+    add_definitions(-DPK_BUILD_MODULE_STRUCT)
+endif()
+
 if(PK_BUILD_MODULE_LZ4)
     add_subdirectory(3rd/lz4)
     add_definitions(-DPK_BUILD_MODULE_LZ4)
@@ -174,6 +179,10 @@ if(PK_BUILD_WITH_UNITY)
 endif()
 
 ############################################
+if(PK_BUILD_MODULE_STRUCT)
+    target_link_libraries(${PROJECT_NAME} struct)
+endif()
+
 if(PK_BUILD_MODULE_LZ4)
     target_link_libraries(${PROJECT_NAME} lz4)
 endif()

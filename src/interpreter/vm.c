@@ -265,6 +265,7 @@ void VM__ctor(VM* self) {
     pk__add_module_unicodedata();
 
     pk__add_module_conio();
+    pk__add_module_struct();     // optional
     pk__add_module_lz4();        // optional
     pk__add_module_cute_png();   // optional
     pk__add_module_msgpack();    // optional
